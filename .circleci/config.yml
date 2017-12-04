@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:17.05.0-ce-git
+    working_directory: ~/grav
+
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Grav Docker Image
+          command: |
+            if [ ${CIRCLE_BRANCH} = 'master' ]; then
+              docker build -t ${dockerhub_login}/grav-php:latest .
+            else
+              docker build -t ${dockerhub_login}/grav-php:${CIRCLE_BRANCH} .
+            fi
+      - run:
+          name: DockerHub Login
+          command: |
+            docker login -u ${dockerhub_login} -p ${dockerhub_pass}
+      - run:
+          name: Push Image to DockerHub
+          command: |
+            if [ ${CIRCLE_BRANCH} = 'master' ]; then
+              docker push ${dockerhub_login}/grav-php:latest
+            else
+              docker push ${dockerhub_login}/grav-php:${CIRCLE_BRANCH}
+            fi

@@ -1,0 +1,22 @@
+version: '2'
+
+networks:
+  grav.net:
+    driver: bridge
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./grav:/grav
+      - ./site.conf:/etc/nginx/conf.d/site.conf
+    networks:
+      - grav.net
+  php:
+    image: indigo/grav-php:latest
+    volumes:
+      - ./grav:/grav
+    networks:
+      - grav.net
