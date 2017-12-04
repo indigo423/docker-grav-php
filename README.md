@@ -1,5 +1,4 @@
-[![Build Status](http://circleci-badges-max.herokuapp.com/img/indigo423/docker-grav-php?token=259039986729cce2f1a8e49b81fa759eaff4d837)](https://circleci.com/gh/indigo423/docker-grav-php)
-![CI](https://circleci.com/gh/indigo423/docker-grav-php.png?circle-token=259039986729cce2f1a8e49b81fa759eaff4d837)
+[![Build Status](http://circleci-badges-max.herokuapp.com/img/indigo423/docker-grav-php?token=259039986729cce2f1a8e49b81fa759eaff4d837)](https://circleci.com/gh/indigo423/docker-grav-php) ![CI](https://circleci.com/gh/indigo423/docker-grav-php.png?circle-token=259039986729cce2f1a8e49b81fa759eaff4d837)
 
 # Grav Flatfile CMS in Docker
 

@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 networks:
   grav.net:
@@ -12,11 +12,21 @@ services:
     volumes:
       - ./grav:/grav
       - ./site.conf:/etc/nginx/conf.d/site.conf
+    healthcheck:
+      test: ["CMD-SHELL", "nginx -t"]
+      interval: 1m
+      timeout: 1s
+      retries: 1
     networks:
       - grav.net
   php:
     image: indigo/grav-php:latest
     volumes:
       - ./grav:/grav
+    healthcheck:
+      test: ["CMD-SHELL", "cgi-fcgi -bind -connect 127.0.0.1:9000"]
+      interval: 1m
+      timeout: 1s
+      retries: 1
     networks:
       - grav.net
